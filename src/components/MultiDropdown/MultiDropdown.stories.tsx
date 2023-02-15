@@ -17,9 +17,9 @@ export default {
     },
     disabled: {
       mapping: {
-        ['true']: true,
-        ['false']: false,
-        ['undefined']: undefined,
+        'true': true,
+        'false': false,
+        'undefined': undefined,
       },
       control: 'boolean'
     }
@@ -35,7 +35,7 @@ export const Default = (props: MultiDropdownProps) => {
       options={OPTIONS}
       onChange={setValue}
       value={value}
-      pluralizeOptions={(values: Option[]) => values.length === 0 ? 'Выберите город': `Выбрано: ${values.length}`}
-  />
+      pluralizeOptions={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
+    />
   );
 };

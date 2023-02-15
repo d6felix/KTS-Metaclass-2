@@ -7,24 +7,24 @@ export default {
   argTypes: {
     disabled: {
       mapping: {
-        ['true']: true,
-        ['false']: false,
-        ['undefined']: undefined,
+        'true': true,
+        'false': false,
+        'undefined': undefined,
       },
       control: 'boolean'
     },
     checked: {
       mapping: {
-        ['true']: true,
-        ['false']: false,
-        ['undefined']: undefined,
+        'true': true,
+        'false': false,
+        'undefined': undefined,
       },
       control: 'boolean'
     }
   }
 };
 
-export const Default = ({checked, ...props}: CheckBoxProps) => {
+export const Default = ({ checked, ...props }: CheckBoxProps) => {
   const [value, setValue] = React.useState<boolean | undefined>(checked)
   return <CheckBox {...props} checked={value} onChange={setValue} />
 };

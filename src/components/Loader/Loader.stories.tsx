@@ -8,15 +8,15 @@ export default {
   argTypes: {
     size: {
       mapping: {
-        ['undefined']: undefined,
+        'undefined': undefined,
       },
       control: 'text'
     },
     loading: {
       mapping: {
-        ['true']: true,
-        ['false']: false,
-        ['undefined']: undefined,
+        'true': true,
+        'false': false,
+        'undefined': undefined,
       },
       control: 'boolean'
     }
@@ -24,5 +24,5 @@ export default {
 };
 
 export const Default = (props: LoaderProps) => (
-  <Loader {...props}/>
+  <Loader {...props} />
 );
