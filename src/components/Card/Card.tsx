@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 export type CardProps = {
     /** URL изображения */
     image: string;
@@ -13,12 +15,12 @@ export type CardProps = {
 
 export const Card: React.FC<CardProps> = ({ image, title, subtitle, content, onClick }) => {
     return (
-        <div onClick={onClick}>
-            <img src={image} />
-            <div>{title}</div>
-            <div>{subtitle}</div>
+        <div onClick={onClick} className={classNames("card")}>
+            <img className={classNames("image")} src={image} alt="card" />
+            <div className={classNames("title")}>{title}</div>
+            <div className={classNames("subtitle")}>{subtitle}</div>
             {content !== null && content}
-        </div>
+        </div >
     );
 };
 

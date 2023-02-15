@@ -1,21 +1,15 @@
 import classNames from "classnames";
+import { LoaderSize } from "../Loader/Loader";
 import WithLoader from "../WithLoader";
 import "./Button.scss"
 
-export enum ButtonColor {
-    primary = 'primary',
-    secondary = 'secondary'
-}
-
 export type ButtonProps = React.PropsWithChildren<{
     loading?: boolean;
-    color?: ButtonColor;
 }> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button: React.FC<ButtonProps> = ({
     children,
     loading = false,
-    color = ButtonColor.primary,
     className,
     disabled = false,
     ...props }) => {
@@ -24,9 +18,9 @@ export const Button: React.FC<ButtonProps> = ({
         <button
             {...props}
             disabled={loading || disabled}
-            className={classNames(className, { button_disabled: disabled || loading }, { button_loading: loading }, `button_color-${color}`)}
+            className={classNames("button", className, { button_disabled: disabled || loading }, { button_loading: loading })}
         >
-            <WithLoader loading={loading} >
+            <WithLoader loading={loading} size={LoaderSize.m}>
                 {children}
             </WithLoader>
         </button>

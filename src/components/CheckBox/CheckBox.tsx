@@ -1,4 +1,3 @@
-/** Пропсы, которые принимает компонент CheckBox */
 export type CheckBoxProps = Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     'onChange'

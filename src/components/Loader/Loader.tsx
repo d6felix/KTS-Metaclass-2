@@ -2,7 +2,7 @@ import "./Loader.scss"
 
 var classNames = require('classnames');
 
-enum LoaderSize {
+export enum LoaderSize {
     s = 's',
     m = 'm',
     l = 'l'

@@ -1,9 +1,8 @@
 import classNames from "classnames";
 
-/** Пропсы, которые принимает компонент Input */
 export type InputProps = Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'onChange'
+    'onChange' | 'value'
 > & {
     /** Значение поля */
     value: string;
