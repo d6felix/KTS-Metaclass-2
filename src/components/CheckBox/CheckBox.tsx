@@ -1,3 +1,7 @@
+import classNames from "classnames";
+import { useState } from "react";
+import "./CheckBox.scss"
+
 export type CheckBoxProps = Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     'onChange'
@@ -6,15 +10,25 @@ export type CheckBoxProps = Omit<
     onChange: (value: boolean) => void;
 };
 
-export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, disabled, checked, ...props }) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, disabled, checked = false, ...props }) => {
+    let setChecked: React.Dispatch<React.SetStateAction<boolean>>;
+    [checked, setChecked] = useState(checked);
+
     return (
-        <input
-            {...props}
-            checked={checked}
-            disabled={disabled}
-            type="checkbox"
-            onChange={(e) => onChange(e.target.checked)}
-        />
+        <label className={classNames("checkbox-container")}>
+            <input
+                {...props}
+                checked={checked}
+                disabled={disabled}
+                type="checkbox"
+                onChange={(e) => {
+                    onChange(e.target.checked);
+                    setChecked(e.target.checked)
+                }}
+                className={classNames("checkbox-hidden", { checkbox_disabled: disabled })}
+            />
+            <div className={classNames("checkbox")} />
+        </label>
     );
 };
 
