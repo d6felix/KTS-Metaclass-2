@@ -20,8 +20,8 @@ export const Button: React.FC<ButtonProps> = ({
             disabled={loading || disabled}
             className={classNames("button", className, { button_disabled: disabled || loading }, { button_loading: loading })}
         >
-            <WithLoader loading={loading} size={LoaderSize.m}>
-                {children}
+            <WithLoader loading={loading} size={LoaderSize.s}>
+                <div>{children}</div>
             </WithLoader>
         </button>
     )
