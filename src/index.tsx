@@ -92,8 +92,6 @@ root.render(
         elements.map((el: Option) => el.key).join(",")
       }
     />
-
-
     <Default
       disabled={false}
       options={OPTIONS}
@@ -101,12 +99,11 @@ root.render(
       onChange={(e: Option[]) => console.log(e)}
       pluralizeOptions={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
     />
-    {/* 
     <Card
       image="/logo512.png"
       title="kts-school-frontend"
       subtitle="ktsstudio"
-    /> */}
+    />
 
   </React.StrictMode>
 );
