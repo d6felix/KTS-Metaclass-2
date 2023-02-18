@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import "./MultiDropdown.scss"
 
 /** Вариант для выбора в фильтре */
 export type Option = {
@@ -24,35 +25,44 @@ export type MultiDropdownProps = {
 };
 
 export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange, disabled = false, pluralizeOptions, ...props }) => {
+
+    let newValue: Option[] = value;
     let listOfOptions = options.map(item => {
         return (
-            <li key={item.key} onClick={() => {
-                let newValue: Option[];
-                if (value.includes(item)) {
-                    newValue = value.filter(a => !(a.value === item.value));
-                } else {
-                    newValue = value.concat([item]);
-                }
-                return onChange(newValue);
-            }}>
+            <li
+                className={classNames(
+                    "multi-dropdown_item",
+                    value.findIndex(elem => elem.key === item.key) !== -1 ? "multi-dropdown_item_selected" : ""
+                )}
+                key={item.key}
+                onClick={() => {
+                    if (value.findIndex(elem => elem.key === item.key) !== -1) {
+                        newValue = value.filter(a => !(a.key === item.key));
+                    } else {
+                        newValue = value.concat([item]);
+                    }
+                    return onChange(newValue);
+                }}>
                 {item.value}
             </li >
         );
     });
-    let pluralizedOPtions = pluralizeOptions(value);
+
+    let pluralizedOptions = pluralizeOptions(newValue);
     const [visible, setVisible] = React.useState(false);
+
     return (
         <>
             <button
                 {...props}
-                className={classNames("dropdown")}
+                className={classNames("multi-dropdown")}
                 disabled={disabled}
                 onClick={() => { setVisible(!visible) }}
             >
-                {pluralizedOPtions}
+                <p>{pluralizedOptions}</p>
             </button >
             {
-                (!disabled && visible) && <ul >
+                (!disabled && visible) && <ul className={classNames("multi-dropdown_itembox")}>
                     {listOfOptions}
                 </ul>
             }

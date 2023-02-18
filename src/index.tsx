@@ -4,13 +4,35 @@ import Button from './components/Button';
 import CheckBox from './components/CheckBox';
 import Input from './components/Input';
 import Loader from './components/Loader';
-import { MultiDropdown, Option } from './components/MultiDropdown/MultiDropdown';
+import Card from './components/Card';
+import { MultiDropdown, Option, MultiDropdownProps } from './components/MultiDropdown/MultiDropdown';
 import './styles/styles.scss';
 import { LoaderSize } from './__test__/MockLoader';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+  document.getElementById('root') as HTMLElement);
+
+const OPTIONS = [
+  { key: 'msk', value: 'Moscow' },
+  { key: 'spb', value: 'Saint Petersburg' },
+  { key: 'ekb', value: 'Ekaterinburg' },
+];
+
+
+export const Default = (props: MultiDropdownProps) => {
+  const [value, setValue] = React.useState<Option[]>(Array.isArray(props.value) ? props.value : []);
+
+  return (
+    <MultiDropdown
+      disabled={props.disabled}
+      options={OPTIONS}
+      onChange={setValue}
+      value={value}
+      pluralizeOptions={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
+    />
+  );
+};
+
 root.render(
   <React.StrictMode>
     <Loader loading={true} size={LoaderSize.l} />
@@ -21,7 +43,7 @@ root.render(
       Find Now
     </Button>
     <Button className="button" loading={true}>
-      Find Now
+      Cancel
     </Button>
     <Input
       value="aaaa"
@@ -32,7 +54,24 @@ root.render(
       }}
       className="test"
     />
+    <Input
+      value="aaaa"
+      disabled={true}
+      onChange={(value) => {
+        /* eslint-disable no-console */
+        console.log(value);
+        /* eslint-enable no-console */
+      }}
+      className="test"
+    />
     <CheckBox checked={true} onChange={() => { }} />
+
+    <CheckBox onChange={() => { }} />
+
+    <CheckBox disabled onChange={() => { }} />
+
+    <CheckBox disabled checked={true} onChange={() => { }} />
+
     <MultiDropdown
       options={[
         { key: 'msk', value: 'Москва' },
@@ -50,8 +89,24 @@ root.render(
         /* eslint-enable no-console */
       }
       pluralizeOptions={(elements: Option[]) =>
-        elements.map((el: Option) => el.key).join()
+        elements.map((el: Option) => el.key).join(",")
       }
     />
+
+
+    <Default
+      disabled={false}
+      options={OPTIONS}
+      value={OPTIONS}
+      onChange={(e: Option[]) => console.log(e)}
+      pluralizeOptions={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
+    />
+    {/* 
+    <Card
+      image="/logo512.png"
+      title="kts-school-frontend"
+      subtitle="ktsstudio"
+    /> */}
+
   </React.StrictMode>
 );
