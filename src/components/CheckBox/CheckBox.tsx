@@ -10,7 +10,12 @@ export type CheckBoxProps = Omit<
     onChange: (value: boolean) => void;
 };
 
-export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, disabled, checked = false, ...props }) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({
+    onChange,
+    disabled,
+    checked = false,
+    ...props
+}) => {
     let setChecked: React.Dispatch<React.SetStateAction<boolean>>;
     [checked, setChecked] = useState(checked);
 
@@ -25,9 +30,12 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, disabled, checked 
                     onChange(e.target.checked);
                     setChecked(e.target.checked)
                 }}
-                className={classNames("checkbox-hidden", { checkbox_disabled: disabled })}
+                className={classNames(
+                    "checkbox-container__checkbox-original_hidden",
+                    { "checkbox-container__checkbox-original_hidden_disabled": disabled }
+                )}
             />
-            <div className={classNames("checkbox")} />
+            <div className={classNames("checkbox-container__checkbox-custom", "checkbox")} />
         </label>
     );
 };

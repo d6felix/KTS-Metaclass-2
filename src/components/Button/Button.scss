@@ -12,33 +12,33 @@
     flex-direction: row-reverse;
     justify-content: space-evenly;
     align-items: center;
-}
 
-.button:first-child {
-    margin-left: 10px;
-    margin-right: 10px;
-}
+    &:first-child {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
-.button:hover {
-    opacity: 0.7;
-}
+    &:hover {
+        opacity: 0.7;
+    }
 
-.button.button_disabled,
-.button.button_loading {
-    opacity: 1.0;
-    background: #D9D9D9;
-}
+    &.button_disabled,
+    &.button_loading {
+        opacity: 1.0;
+        background: #D9D9D9;
+    }
 
-// only for test
-.button.button_loading {
-    position: relative;
-    left: -8px;
-}
+    // only for test
+    &.button_loading {
+        position: relative;
+        left: -8px;
+    }
 
-.button .loader {
-    width: 20px;
-    height: 20px;
-    border-color: #FFFFFF;
-    border-bottom-color: transparent;
-    margin-right: 18px;
+    .button__loader {
+        width: 20px;
+        height: 20px;
+        border-color: #FFFFFF;
+        border-bottom-color: transparent;
+        margin-right: 18px;
+    }
 }

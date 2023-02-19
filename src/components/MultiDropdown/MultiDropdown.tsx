@@ -24,15 +24,22 @@ export type MultiDropdownProps = {
     pluralizeOptions: (value: Option[]) => string;
 };
 
-export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange, disabled = false, pluralizeOptions, ...props }) => {
-
+export const MultiDropdown: React.FC<MultiDropdownProps> = ({
+    options,
+    value = [],
+    onChange,
+    disabled = false,
+    pluralizeOptions,
+    ...props
+}) => {
     let newValue: Option[] = value;
+
     let listOfOptions = options.map(item => {
         return (
             <li
                 className={classNames(
-                    "multi-dropdown_item",
-                    value.findIndex(elem => elem.key === item.key) !== -1 ? "multi-dropdown_item_selected" : ""
+                    "multi-dropdown__item",
+                    value.findIndex(elem => elem.key === item.key) !== -1 ? "multi-dropdown__item_selected" : ""
                 )}
                 key={item.key}
                 onClick={() => {
@@ -62,7 +69,7 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, on
                 <p>{pluralizedOptions}</p>
             </button >
             {
-                (!disabled && visible) && <ul className={classNames("multi-dropdown_itembox")}>
+                (!disabled && visible) && <ul className={classNames("multi-dropdown__itembox")}>
                     {listOfOptions}
                 </ul>
             }

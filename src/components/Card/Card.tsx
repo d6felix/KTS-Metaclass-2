@@ -17,10 +17,10 @@ export type CardProps = {
 export const Card: React.FC<CardProps> = ({ image, title, subtitle, content, onClick }) => {
     return (
         <div onClick={onClick} className={classNames("card")}>
-            <img className={classNames("image")} src={image} alt="card" />
-            <div className={classNames("card_container")}>
-                <div className={classNames("title")}>{title}</div>
-                <div className={classNames("subtitle")}>{subtitle}</div>
+            <img className={classNames("card__image")} src={image} alt="card" />
+            <div className={classNames("card__title-container")}>
+                <div className={classNames("card__title")}>{title}</div>
+                <div className={classNames("card__subtitle")}>{subtitle}</div>
                 {content !== null && content}
             </div>
         </div >
